@@ -107,5 +107,16 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with web and local mixed refs', function (done) {
+      var input = require('./schemas/webwithlocal');
+      var expected = require('./schemas/webwithlocal.expected.json');
+
+      deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
   });
 });

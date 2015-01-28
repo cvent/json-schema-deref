@@ -1,0 +1,33 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "$ref": "https://raw.githubusercontent.com/bojand/json-schema-test-samples/master/id.json"
+    },
+    "foo": {
+      "$ref": "https://raw.githubusercontent.com/bojand/json-schema-test-samples/master/foo.json"
+    },
+    "bar": {
+      "$ref": "https://raw.githubusercontent.com/bojand/json-schema-test-samples/master/bar.json"
+    },
+    "address": {
+      "$ref": "https://raw.githubusercontent.com/bojand/json-schema-test-samples/master/address.json"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "foo": {
+      "$ref": "#/definitions/foo"
+    },
+    "bar": {
+      "$ref": "#/definitions/bar"
+    },
+    "address": {
+      "$ref": "#/definitions/address"
+    }
+  }
+}
