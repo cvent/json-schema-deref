@@ -1,0 +1,16 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "properties": {
+  "id": {
+    "$ref": "id.json"
+  },
+  "foo": {
+    "$ref": "foo.json"
+  },
+  "bar": {
+    "$ref": "bar.json"
+  }
+}
+}

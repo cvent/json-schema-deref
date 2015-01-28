@@ -1,0 +1,5 @@
+{
+  "description": "foo property",
+  "readOnly": true,
+  "type": "number"
+}
