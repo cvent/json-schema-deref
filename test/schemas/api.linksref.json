@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Some app",
+  "type": "object",
+  "definitions": {
+    "app": {
+      "$ref": "app.json"
+    },
+    "domain": {
+      "$ref": "domain.json"
+    }
+  },
+  "properties": {
+    "app": {
+      "$ref": "#/definitions/app"
+    },
+    "domain": {
+      "$ref": "#/definitions/domain"
+    }
+  },
+  "links": {
+    "$ref": "api.links.json"
+  }
+}

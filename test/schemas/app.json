@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Some app",
+  "type": "object",
+  "definitions": {
+    "domains": {
+      "items": {
+        "$ref": "domain.json"
+      },
+      "type": "array"
+    },
+    "name": {
+      "pattern": "^[a-z][a-z0-9-]{3,30}$",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "domains": {
+      "$ref": "#/definitions/domains"
+    },
+    "name": {
+      "$ref": "#definitions/name"
+    }
+  },
+  "required": ["name"],
+  "type": "object"
+}

@@ -140,5 +140,27 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with nested json pointers', function (done) {
+      var input = require('./schemas/api.props.json');
+      var expected = require('./schemas/api.props.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with nested json pointers to files and links ref to files', function (done) {
+      var input = require('./schemas/api.linksref.json');
+      var expected = require('./schemas/api.linksref.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
   });
 });

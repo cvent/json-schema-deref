@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Some app",
+  "type": "object",
+  "definitions": {
+    "name": {
+      "format": "hostname",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "name": {
+      "$ref": "#/definitions/name"
+    }
+  },
+  "required": ["name"],
+  "type": "object"
+}

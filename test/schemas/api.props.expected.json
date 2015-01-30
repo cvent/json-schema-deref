@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Some app",
+  "type": "object",
+  "definitions": {
+    "app": {
+      "definitions": {
+        "domains": {
+          "items": {
+            "definitions": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "properties": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "required": ["name"],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{3,30}$",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "domains": {
+          "items": {
+            "definitions": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "properties": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "required": ["name"],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{3,30}$",
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "domain": {
+      "definitions": {
+        "name": {
+          "format": "hostname",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "name": {
+          "format": "hostname",
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "app": {
+      "definitions": {
+        "domains": {
+          "items": {
+            "definitions": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "properties": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "required": ["name"],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{3,30}$",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "domains": {
+          "items": {
+            "definitions": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "properties": {
+              "name": {
+                "format": "hostname",
+                "type": "string"
+              }
+            },
+            "required": ["name"],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9-]{3,30}$",
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "domain": {
+      "definitions": {
+        "name": {
+          "format": "hostname",
+          "type": "string"
+        }
+      },
+      "properties": {
+        "name": {
+          "format": "hostname",
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    }
+  }
+}

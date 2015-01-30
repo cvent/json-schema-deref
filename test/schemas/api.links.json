@@ -1,0 +1,34 @@
+[
+  {
+    "description": "List apps.",
+    "href": "/apps",
+    "method": "GET",
+    "rel": "instances",
+    "targetSchema": {
+      "items": {
+        "$ref": "app.json"
+      },
+      "type": "array"
+    },
+    "title": "List"
+  },
+  {
+    "description": "Create a new app.",
+    "href": "/apps",
+    "method": "POST",
+    "rel": "create",
+    "schema": {
+      "properties": {
+        "name": {
+          "$ref": "domain.json#/definitions/name"
+        }
+      },
+      "required": ["name"],
+      "type": "object"
+    },
+    "title": "Create",
+    "targetSchema": {
+      "$ref": "app.json"
+    }
+  }
+]
