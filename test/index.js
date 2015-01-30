@@ -88,7 +88,7 @@ describe('json-schema-deref', function () {
 
     it('should work with absolute files', function (done) {
       var input = require('./schemas/filerefs');
-      var expected = require('./schemas/basic.json');
+      var expected = require('./schemas/basic.json'); // same expected output
 
       deref(input, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -99,7 +99,7 @@ describe('json-schema-deref', function () {
 
     it('should work with simple web refs', function (done) {
       var input = require('./schemas/webrefs');
-      var expected = require('./schemas/localrefs.expected.json');
+      var expected = require('./schemas/localrefs.expected.json'); // same expected output
 
       deref(input, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -113,6 +113,28 @@ describe('json-schema-deref', function () {
       var expected = require('./schemas/webwithlocal.expected.json');
 
       deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with web refs with json pointers', function (done) {
+      var input = require('./schemas/webrefswithpointer');
+      var expected = require('./schemas/webrefswithpointer.expected.json');
+
+      deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with file refs with json pointers', function (done) {
+      var input = require('./schemas/filerefswithpointer');
+      var expected = require('./schemas/webrefswithpointer.expected.json'); // same expected output
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
         expect(err).to.not.be.ok;
         expect(schema).to.deep.equal(expected);
         done();
