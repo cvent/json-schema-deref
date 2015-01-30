@@ -1,0 +1,28 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "id": {
+      "description": "custom unique identifier of a the object",
+      "type": "string",
+      "minLength": 1,
+      "readOnly": true
+    },
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
+  }
+}

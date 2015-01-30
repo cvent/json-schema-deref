@@ -1,0 +1,25 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "db://custom.json#/id.json"
+    },
+    "foo": {
+      "$ref": "/var/tmp/json-deref-schema-tests/foo.json"
+    },
+    "bar": {
+      "$ref": "#/definitions/bar"
+    },
+    "rfc1808": {
+      "$ref": "ftp://ftp.is.co.za/rfc/rfc1808.txt"
+    }
+  }
+}

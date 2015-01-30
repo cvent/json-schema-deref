@@ -162,5 +162,67 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with custom loader', function (done) {
+      var input = require('./schemas/customtype.json');
+      var expected = require('./schemas/customtype.expected.json');
+
+      var customLoader = function (ref, options, fn) {
+        if (ref.indexOf('db:') === 0) {
+          var value = {
+            "description": "custom unique identifier of a the object",
+            "type": "string",
+            "minLength": 1,
+            "readOnly": true
+          };
+
+          return fn(null, value);
+        }
+
+        return fn(null);
+      };
+
+      var options = {
+        baseFolder: './test/schemas',
+        loader: customLoader
+      };
+
+      deref(input, options, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with custom loader and unknown type', function (done) {
+      var input = require('./schemas/customunknown.json');
+      var expected = require('./schemas/customunknown.expected.json');
+
+      var customLoader = function (ref, options, fn) {
+        if (ref.indexOf('db:') === 0) {
+          var value = {
+            "description": "custom unique identifier of a the object",
+            "type": "string",
+            "minLength": 1,
+            "readOnly": true
+          };
+
+          return fn(null, value);
+        }
+
+        return fn(null);
+      };
+
+      var options = {
+        baseFolder: './test/schemas',
+        loader: customLoader
+      };
+
+      deref(input, options, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
   });
 });
