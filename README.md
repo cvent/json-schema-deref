@@ -52,20 +52,21 @@ Sometimes you just want that schema to be fully expanded, with `$ref`'s being th
     }
   },
   "properties": {
-  "id": {
-    "description": "unique identifier",
-    "type": "string",
-    "minLength": 1,
-    "readOnly": true
-  },
-  "foo": {
-    "description": "foo property",
-    "readOnly": true,
-    "type": "number"
-  },
-  "bar": {
-     "description": "bar property",
-     "type": "boolean"
+    "id": {
+      "description": "unique identifier",
+      "type": "string",
+      "minLength": 1,
+      "readOnly": true
+    },
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
   }
 }
 ```
