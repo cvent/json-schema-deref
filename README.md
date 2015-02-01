@@ -128,7 +128,7 @@ console.dir(localValue);
 
 ## Custom Loader
 
-Let's say we want to get $ref's from a MongoDB database. And our ref objects in the JSON Schema might be something like:
+Let's say we want to get $ref's from a MongoDB database, and our `$ref` objects in the JSON Schema might be something like:
 
 ```json
 "foo": {
@@ -136,7 +136,7 @@ Let's say we want to get $ref's from a MongoDB database. And our ref objects in 
 }
 ```
 
-Our custom loader function passed in `options` would look something like:
+Our custom loader function passed in the `options` `loader` parameter would look something like:
 
 ```js
 function myMongoDBLoader(ref, option, fn) {
