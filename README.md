@@ -90,10 +90,10 @@ Derefs `$ref`'s in json schema to actual resolved values. Supports local, file a
 
 Parameters:
 
-#### `schema`
+##### `schema`
 The input JSON schema
 
-#### `options`
+##### `options`
 
 `baseFolder` - the base folder to get relative path files from. Default is `process.cwd()`
 
@@ -110,8 +110,21 @@ The input JSON schema
     * `err` - error if ref is valid for the loader but there was an error resolving the ref
     * `newValue` - the resolved ref value, or null/undefined if the ref isn't for this custom loader and we should just leave the $ref as is.
 
-#### fn
+##### fn
 The final callback `function(err, fullSchema)`
+
+### defer.getRefPathValue(schema, refPath)
+
+Gets the "local" ref value given the path.
+
+`schema` - the (root) json schema to search
+
+`refPath` - string ref path to get within the schema. Ex. `#/definitions/id`
+
+```js
+var localValue = defer.getRefPathValue(myschema, '#/definitions/foo');
+console.dir(localValue);
+```
 
 ## Custom Loader
 
