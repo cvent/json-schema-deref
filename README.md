@@ -78,16 +78,16 @@ This utility lets you do that:
 var deref = require('json-schema-deref');
 var myschema = require('schema.json');
 
-defer(myschema, function(err, fullSchema) {
+deref(myschema, function(err, fullSchema) {
   console.dir(fullSchema); // has the full expanded $refs
 };
 ```
 
 ## API
 
-### defer(schema, options, fn)
+### deref(schema, options, fn)
 
-Derefs `$ref`'s in json schema to actual resolved values. Supports local, file and web refs.
+Dereferences `$ref`'s in json schema to actual resolved values. Supports local, file and web refs.
 
 Parameters:
 
@@ -114,7 +114,7 @@ The input JSON schema
 ##### fn
 The final callback `function(err, fullSchema)`
 
-### defer.getRefPathValue(schema, refPath)
+### deref.getRefPathValue(schema, refPath)
 
 Gets the "local" ref value given the path.
 
@@ -123,7 +123,7 @@ Gets the "local" ref value given the path.
 `refPath` - string ref path to get within the schema. Ex. `#/definitions/id`
 
 ```js
-var localValue = defer.getRefPathValue(myschema, '#/definitions/foo');
+var localValue = deref.getRefPathValue(myschema, '#/definitions/foo');
 console.dir(localValue);
 ```
 
