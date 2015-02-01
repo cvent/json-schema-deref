@@ -143,7 +143,7 @@ Our custom loader function passed in the `options` `loader` parameter would look
 function myMongoDBLoader(ref, option, fn) {
   if(ref.indexOf('mongodb:') === 0) {
     var id = ref.substring(8);
-    collection.findOne({_id:id}, fn);
+    return collection.findOne({_id:id}, fn);
   }
 
   // not ours, pass back nothing to keep it the same
