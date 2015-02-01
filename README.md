@@ -97,9 +97,9 @@ The input JSON schema
 
 `baseFolder` - the base folder to get relative path files from. Default is `process.cwd()`
 
-`cache` - whether to cache the result from the request. true if to cache, false otherwise.
+`cache` - whether to cache the result from the request. `true` if to cache, `false` otherwise.
 
-`cacheTTL` - the time to keep request result in cache. Default is 5 minutes.
+`cacheTTL` - the time in milliseconds to keep request result in cache. Default is 5 minutes.
 
 `loader` - a function for custom loader. Invoked if we could not resolve the ref type, or if there was an error resolving a web or file ref types.
            function with signature: `function(refValue, options, fn)`
@@ -111,7 +111,7 @@ The input JSON schema
     * `newValue` - the resolved ref value, or null/undefined if the ref isn't for this custom loader and we should just leave the $ref as is.
 
 #### fn
-The final callback `function(err, fullSchema)`.
+The final callback `function(err, fullSchema)`
 
 ## Custom Loader
 
@@ -129,10 +129,10 @@ Our custom loader function passed in `options` would look something like:
 function myMongoDBLoader(ref, option, fn) {
   if(ref.indexOf('mongodb:') === 0) {
     var id = ref.substring(8);
-    collection.findOne({_id:id},function(fn));
+    collection.findOne({_id:id}, fn);
   }
 
-  // not our, keep it the same
-  return fn(null);
+  // not ours, pass back nothing to keep it the same
+  return fn();
 }
 ```
