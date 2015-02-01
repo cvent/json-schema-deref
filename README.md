@@ -97,9 +97,9 @@ The input JSON schema
 
 `baseFolder` - the base folder to get relative path files from. Default is `process.cwd()`
 
-`cache` - whether to cache the result from the request. `true` if to cache, `false` otherwise.
+`cache` - whether to cache the result from web requests. `true` if to cache, `false` otherwise.
 
-`cacheTTL` - the time in milliseconds to keep request result in cache. Default is 5 minutes.
+`cacheTTL` - the time in milliseconds to keep web request results in cache. Default is 5 minutes.
 
 `loader` - a function for custom loader. Invoked if we could not resolve the ref type, or if there was an error resolving a web or file ref types.
            function with signature: `function(refValue, options, fn)`
