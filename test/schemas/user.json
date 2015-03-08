@@ -1,0 +1,21 @@
+{
+  "description": "User",
+  "title": "User",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "email": {
+      "$ref": "common-definitions.json#/definitions/email"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "email": {
+      "$ref": "#/definitions/email"
+    }
+  }
+}

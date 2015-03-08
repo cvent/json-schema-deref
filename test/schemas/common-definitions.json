@@ -31,6 +31,12 @@
       "readOnly": false,
       "type": "string",
       "minLength": 1
+    },
+    "password": {
+      "description": "password",
+      "readOnly": false,
+      "type": "string",
+      "minLength": 1
     }
   }
 }

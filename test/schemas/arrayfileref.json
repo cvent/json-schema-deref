@@ -1,0 +1,60 @@
+[
+  {
+    "href": "/schema",
+    "method": "GET",
+    "rel": "self"
+  },
+  {
+    "description": "Login to service.",
+    "href": "/login",
+    "method": "POST",
+    "rel": "parent-action",
+    "title": "Login",
+    "schema": {
+      "$ref": "login-request.json"
+    }
+  },
+  {
+    "description": "Logout from the user service.",
+    "href": "/logout",
+    "method": "POST",
+    "rel": "parent-action",
+    "title": "Logout"
+  },
+  {
+    "description": "Check the rights.",
+    "href": "/checkRight",
+    "method": "GET",
+    "rel": "parent-action",
+    "title": "check-right",
+    "schema": {
+      "properties": {
+        "entity": {
+          "description": "The entity type to validate against.",
+          "example": "account",
+          "type": "string",
+          "minLength": 1
+        },
+        "entityId": {
+          "description": "The ID of the entity we are validating against.",
+          "type": "string",
+          "minLength": 1
+        },
+        "right": {
+          "description": "The requested right to check for.",
+          "type": "string",
+          "minLength": 1
+        },
+        "userId": {
+          "$ref": "user.json#/definitions/id"
+        }
+      },
+      "required": [
+        "entity",
+        "entityId",
+        "right"
+      ],
+      "type": "object"
+    }
+  }
+]
