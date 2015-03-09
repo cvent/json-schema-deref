@@ -1,0 +1,48 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "id": {
+      "description": "Unique identifier.",
+      "readOnly": true,
+      "format": "uuid",
+      "example": "01234567-89ab-cdef-0123-456789abcdef",
+      "type": "string",
+      "minLength": 1
+    },
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    },
+    "stuff": {
+      "$ref": "#/definitions/stuff"
+    },
+    "email": {
+      "$ref": "common-definitions.json#/definitions/missing"
+    },
+    "created_at": {
+      "description": "Creation time.",
+      "example": "2014-07-25T19:14:29.503Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "bar property",
+      "type": "boolean"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "foo": {
+      "$ref": "#/definitions/foo"
+    },
+    "bar": {
+      "$ref": "#/definitions/bar"
+    },
+    "stuff": {
+      "$ref": "#/definitions/stuff"
+    },
+    "email": {
+      "$ref": "common-definitions.json#/definitions/missing"
+    },
+    "created_at": {
+      "$ref": "common-definitions.json#/definitions/created_at"
+    }
+  }
+}

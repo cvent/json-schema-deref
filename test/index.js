@@ -163,7 +163,7 @@ describe('json-schema-deref', function () {
       });
     });
 
-    it('should work with nested json pointers to files with redirect to file in an array ', function (done) {
+    it('should work with nested json pointers to files with redirect to file in an array', function (done) {
       var input = require('./schemas/arrayfileref.json');
       var expected = require('./schemas/arrayfileref.expected.json');
 
@@ -230,6 +230,17 @@ describe('json-schema-deref', function () {
       };
 
       deref(input, options, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with missing properties', function (done) {
+      var input = require('./schemas/missing.json');
+      var expected = require('./schemas/missing.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
         expect(err).to.not.be.ok;
         expect(schema).to.deep.equal(expected);
         done();
