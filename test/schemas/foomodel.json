@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-03/hyper-schema",
+  "description": "Foo Model",
+  "type": "object",
+  "title": "Foo",
+  "definitions": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "title": {
+      "description": "Title",
+      "readOnly": false,
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

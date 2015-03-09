@@ -174,6 +174,17 @@ describe('json-schema-deref', function () {
       });
     });
 
+    it('should work with deep links', function (done) {
+      var input = require('./schemas/apideeplink.json');
+      var expected = require('./schemas/apideeplink.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
     it('should work with custom loader', function (done) {
       var input = require('./schemas/customtype.json');
       var expected = require('./schemas/customtype.expected.json');

@@ -1,0 +1,47 @@
+[
+  {
+    "description": "Remove a widget",
+    "href": "/widgets/{widgetId}",
+    "method": "DELETE",
+    "rel": "delete",
+    "title": "Delete"
+  },
+  {
+    "description": "Update a widget.",
+    "href": "/widgets/{widgetId}",
+    "method": "POST",
+    "rel": "update",
+    "title": "update",
+    "schema": {
+      "properties": {
+        "foo-id": {
+          "description": "Unique identifier.",
+          "readOnly": true,
+          "format": "uuid",
+          "example": "01234567-89ab-cdef-0123-456789abcdef",
+          "type": "string",
+          "minLength": 1
+        },
+        "email": {
+          "description": "Email",
+          "format": "email",
+          "readOnly": false,
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "fooId",
+        "email"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "description": "Invite account user to an account.",
+    "href": "/invite/account/:accountId",
+    "method": "POST",
+    "rel": "parent-action",
+    "title": "invite-account-user"
+  }
+]

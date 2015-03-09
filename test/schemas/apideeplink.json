@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Remove a widget",
+    "href": "/widgets/{widgetId}",
+    "method": "DELETE",
+    "rel": "delete",
+    "title": "Delete"
+  },
+  {
+    "description": "Update a widget.",
+    "href": "/widgets/{widgetId}",
+    "method": "POST",
+    "rel": "update",
+    "title": "update",
+    "schema": {
+      "properties": {
+        "foo-id": {
+          "$ref": "widget-update.json#/properties/foo-id"
+        },
+        "email": {
+          "$ref": "widget-update.json#/properties/email"
+        }
+      },
+      "required": [
+        "fooId",
+        "email"
+      ],
+      "type": "object"
+    }
+  },
+  {
+    "description": "Invite account user to an account.",
+    "href": "/invite/account/:accountId",
+    "method": "POST",
+    "rel": "parent-action",
+    "title": "invite-account-user"
+  }
+]
