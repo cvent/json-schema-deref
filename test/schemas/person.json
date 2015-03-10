@@ -1,0 +1,25 @@
+{
+  "description": "A person object.",
+  "title": "Person",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "lastLogin": {
+      "description": "When the person last logged in.",
+      "example": "2014-07-25T19:14:29.503Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "lastLogin": {
+      "$ref": "#/definitions/lastLogin"
+    }
+  }
+}

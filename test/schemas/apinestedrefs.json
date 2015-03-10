@@ -1,0 +1,12 @@
+[
+  {
+    "description": "Some link.",
+    "href": "/fooaction",
+    "method": "GET",
+    "rel": "parent-action",
+    "title": "fooaction",
+    "targetSchema": {
+      "$ref": "fooaction-response.json"
+    }
+  }
+]

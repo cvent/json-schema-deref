@@ -1,0 +1,24 @@
+[
+  {
+    "description": "Some link.",
+    "href": "/fooaction",
+    "method": "GET",
+    "rel": "parent-action",
+    "title": "fooaction",
+    "targetSchema": {
+      "description": "Foo action response request",
+      "title": "Foo action response request",
+      "type": "object",
+      "properties": {
+        "personId": {
+          "description": "Unique identifier.",
+          "readOnly": true,
+          "format": "uuid",
+          "example": "01234567-89ab-cdef-0123-456789abcdef",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+]
