@@ -1,6 +1,8 @@
 # json-schema-deref
 
 Dereference JSON pointers in a JSON schemas with their true resolved values.
+A lighter synchronous version of this module is available as [json-schema-deref-sync](https://github.com/bojand/json-schema-deref-sync),
+but omits web references and custom loaders.
 
 ## Installation
 
