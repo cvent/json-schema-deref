@@ -9,7 +9,7 @@
     "json",
     "schema"
   ],
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://github.com/bojand/json-schema-deref",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,8 @@
     "mpath": "~0.2.1",
     "prop-search": "~1.1.8",
     "request": "~2.51.0",
-    "valid-url": "~1.0.9"
+    "valid-url": "~1.0.9",
+    "traverse-async": "~0.1.5"
   },
   "devDependencies": {
     "mocha": "~2.0.1",
