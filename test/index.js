@@ -268,5 +268,49 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with anyOf array properties', function (done) {
+      var input = require('./schemas/anyofref.json');
+      var expected = require('./schemas/anyofref.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it.skip('should work with top level custom property', function (done) {
+      var input = require('./schemas/toplevelcustom.json');
+      var expected = require('./schemas/toplevelcustom.expected.json');
+
+      var customLoader = function (ref, options, fn) {
+        if (ref.indexOf('urn:') >= 0) {
+          var value = {
+            "type": "object",
+            "properties": {
+              "baz": {
+                "type": "string"
+              }
+            }
+          };
+
+          return fn(null, value);
+        }
+
+        return fn(null);
+      };
+
+      var options = {
+        baseFolder: './test/schemas',
+        loader: customLoader
+      };
+
+      deref(input, options, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
   });
 });
