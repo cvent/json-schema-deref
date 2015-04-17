@@ -312,5 +312,16 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with dots (.) in properties', function (done) {
+      var input = require('./schemas/dotprop.json');
+      var expected = require('./schemas/dotprop.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
   });
 });
