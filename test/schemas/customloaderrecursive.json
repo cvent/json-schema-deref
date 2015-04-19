@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "custom": {
+      "$ref": "urn:custom"
+    }
+  },
+  "properties": {
+    "bar": {
+      "$ref": "#/definitions/custom/fooDef1"
+    }
+  }
+}
