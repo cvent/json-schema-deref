@@ -280,7 +280,7 @@ describe('json-schema-deref', function () {
       });
     });
 
-    it.skip('should work with top level custom property', function (done) {
+    it('should work with top level custom property', function (done) {
       var input = require('./schemas/toplevelcustom.json');
       var expected = require('./schemas/toplevelcustom.expected.json');
 
