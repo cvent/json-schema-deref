@@ -324,7 +324,7 @@ describe('json-schema-deref', function () {
       });
     });
 
-    it.only('should work with recursive refs in custom loader', function (done) {
+    it('should work with recursive refs in custom loader', function (done) {
       var input = require('./schemas/customloaderrecursive.json');
       var expected = require('./schemas/customloaderrecursive.expected.json');
 
