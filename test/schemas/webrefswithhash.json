@@ -1,5 +1,5 @@
 {
-  "description": "Just a basic schema with refs ending in '#' (as in https://github.com/fge/sample-json-schemas/blob/master/geojson/geojson.json).",
+  "description": "Just a basic schema.",
   "title": "Basic Object",
   "type": "object",
   "definitions": {
