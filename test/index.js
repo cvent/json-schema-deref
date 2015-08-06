@@ -108,6 +108,17 @@ describe('json-schema-deref', function () {
       });
     });
 
+    it('should work with simple web refs ended with #', function (done) {
+      var input = require('./schemas/webrefswithhash');
+      var expected = require('./schemas/localrefs.expected.json'); // same expected output
+
+      deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
     it('should work with web and local mixed refs', function (done) {
       var input = require('./schemas/webwithlocal');
       var expected = require('./schemas/webwithlocal.expected.json');
