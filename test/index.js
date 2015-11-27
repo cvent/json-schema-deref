@@ -334,51 +334,5 @@ describe('json-schema-deref', function () {
         done();
       });
     });
-
-    it('should work with recursive refs in custom loader', function (done) {
-      var input = require('./schemas/customloaderrecursive.json');
-      var expected = require('./schemas/customloaderrecursive.expected.json');
-
-      var customLoader = function (ref, options, fn) {
-        if (ref.indexOf('urn:') >= 0) {
-          var value = {
-            "$schema": "http://json-schema.org/draft-04/schema#",
-            "definitions": {
-              "fooDef2": {
-                "type": "object",
-                "properties": {
-                  "prop1": {
-                    "type": "number"
-                  }
-                }
-              }
-            },
-            "fooDef1": {
-              "type": "object",
-              "properties": {
-                "baz": {
-                  "$ref": "#/definitions/fooDef2"
-                }
-              }
-            }
-          };
-
-          return fn(null, value);
-        }
-
-        return fn(null);
-      };
-
-      var options = {
-        baseFolder: './test/schemas',
-        loader: customLoader
-      };
-
-      deref(input, options, function (err, schema) {
-        expect(err).to.not.be.ok;
-        expect(schema).to.deep.equal(expected);
-        done();
-      });
-    });
   });
 });
