@@ -1,0 +1,13 @@
+{
+  "definitions": {
+    "bar": {
+      "type": "string"
+    }
+  },
+  "barArray": {
+    "type": "array",
+    "item": {
+      "$ref": "#/definitions/bar"
+    }
+  }
+}
