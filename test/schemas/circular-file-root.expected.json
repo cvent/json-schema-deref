@@ -1,0 +1,67 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "description": "Unique identifier.",
+      "readOnly": true,
+      "format": "uuid",
+      "example": "01234567-89ab-cdef-0123-456789abcdef",
+      "type": "string",
+      "minLength": 1
+    },
+    "foo": {
+      "description": "foo property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "bar": {
+      "description": "Just a basic schema.",
+      "title": "Basic Object",
+      "type": "object",
+      "properties": {
+        "some1": {
+          "description": "something",
+          "type": "string"
+        },
+        "prop2": {
+          "description": "Just a basic schema.",
+          "title": "Basic Object",
+          "type": "object",
+          "properties": {
+            "somethingelse": {
+              "description": "something",
+              "type": "string"
+            },
+            "prop3": {
+              "description": "Just a basic schema.",
+              "title": "Basic Object",
+              "type": "object",
+              "properties": {
+                "somethingelse": {
+                  "description": "something",
+                  "type": "string"
+                },
+                "prop4": {
+                  "$ref": "circular-bar.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "foo": {
+      "$ref": "foo.json"
+    },
+    "bar": {
+      "$ref": "circular-bar.json"
+    }
+  }
+}
