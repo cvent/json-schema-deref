@@ -412,5 +412,15 @@ describe('json-schema-deref', function () {
         done();
       });
     });
+
+    it('should work with cyclycal object', function (done) {
+      var input = require('./schemas/cyclicaljs.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.be.ok;
+        expect(err).to.be.an.instanceOf(Error);
+        done();
+      });
+    });
   });
 });

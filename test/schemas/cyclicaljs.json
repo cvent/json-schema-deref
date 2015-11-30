@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "myApp",
+  "type": "object",
+  "properties": {
+    "id": {
+      "format": "string"
+    }
+  },
+  "links": [
+    {
+      "allOf": [
+        {
+          "$ref": "redaktor.json#/definitions/read/definitions/GET_byId"
+        },
+        {
+          "schema": {
+            "$ref": "#"
+          }
+        }
+      ]
+    }
+  ]
+}
