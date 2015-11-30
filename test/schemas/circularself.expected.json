@@ -1,0 +1,35 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "RegexNodeDto": {
+      "id": "RegexNodeDto",
+      "properties": {
+        "Children": {
+          "required": true,
+          "items": {
+            "$ref": "#/definitions/RegexNodeDto"
+          },
+          "type": "Array"
+        },
+        "NodeType": {
+          "required": true,
+          "type": "string"
+        },
+        "Pattern": {
+          "required": true,
+          "type": "string"
+        },
+        "Index": {
+          "required": true,
+          "type": "int"
+        },
+        "Id": {
+          "required": true,
+          "type": "int"
+        }
+      }
+    }
+  }
+}

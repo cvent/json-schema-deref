@@ -1,0 +1,14 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "properties": {
+    "some1": {
+      "description": "something",
+      "type": "string"
+    },
+    "prop2": {
+      "$ref": "circular-from-bar.json"
+    }
+  }
+}

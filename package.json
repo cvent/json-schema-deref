@@ -26,8 +26,7 @@
   "dependencies": {
     "clone": "~1.0.2",
     "lodash": "~3.10.1",
-    "lodash": "~3.0.0",
-    "memory-cache": "0.0.5",
+    "memory-cache": "~0.1.4",
     "mpath": "~0.2.1",
     "request": "~2.51.0",
     "valid-url": "~1.0.9",

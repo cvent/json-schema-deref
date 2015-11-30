@@ -97,9 +97,20 @@ describe('json-schema-deref', function () {
       });
     });
 
+    it('should work with absolute files with # at end', function () {
+      var input = require('./schemas/filerefswithhash');
+      var expected = require('./schemas/basic.json');
+
+      deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
     it('should work with simple web refs', function (done) {
       var input = require('./schemas/webrefs');
-      var expected = require('./schemas/localrefs.expected.json'); // same expected output
+      var expected = require('./schemas/localrefs.expected.json');
 
       deref(input, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -110,7 +121,7 @@ describe('json-schema-deref', function () {
 
     it('should work with simple web refs ended with #', function (done) {
       var input = require('./schemas/webrefswithhash');
-      var expected = require('./schemas/localrefs.expected.json'); // same expected output
+      var expected = require('./schemas/localrefs.expected.json');
 
       deref(input, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -122,6 +133,17 @@ describe('json-schema-deref', function () {
     it('should work with web and local mixed refs', function (done) {
       var input = require('./schemas/webwithlocal');
       var expected = require('./schemas/webwithlocal.expected.json');
+
+      deref(input, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with simple web refs ended with # and option', function (done) {
+      var input = require('./schemas/webrefswithhash');
+      var expected = require('./schemas/webrefswithhash.expected.json');
 
       deref(input, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -143,7 +165,7 @@ describe('json-schema-deref', function () {
 
     it('should work with file refs with json pointers', function (done) {
       var input = require('./schemas/filerefswithpointer');
-      var expected = require('./schemas/webrefswithpointer.expected.json'); // same expected output
+      var expected = require('./schemas/webrefswithpointer.expected.json');
 
       deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
         expect(err).to.not.be.ok;
@@ -331,6 +353,51 @@ describe('json-schema-deref', function () {
       deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
         expect(err).to.not.be.ok;
         expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with top level ref properties', function (done) {
+      var input = require('./schemas/toplevel.json');
+      var expected = require('./schemas/toplevel.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.not.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    // TODO This really should return an error ?
+    it('should work with local circular ref properties', function (done) {
+      var input = require('./schemas/circularlocalref.json');
+      var expected = require('./schemas/circularlocalref.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(schema).to.be.ok;
+        expect(schema).to.deep.equal(expected);
+        done();
+      });
+    });
+
+    it('should work with local self referencing properties', function (done) {
+      var input = require('./schemas/circularself.json');
+      var expected = require('./schemas/circularself.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.be.ok;
+        expect(err).to.be.an.instanceOf(Error);
+        done();
+      });
+    });
+
+    it('should work with circular file ref properties', function (done) {
+      var input = require('./schemas/circular-file-root.json');
+      var expected = require('./schemas/circular-file-root.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(err).to.be.ok;
+        expect(err).to.be.an.instanceOf(Error);
         done();
       });
     });

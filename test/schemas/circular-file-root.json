@@ -1,0 +1,27 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "$ref": "common-definitions.json#/definitions/id"
+    },
+    "foo": {
+      "$ref": "foo.json"
+    },
+    "bar": {
+      "$ref": "circular-bar.json"
+    }
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "foo": {
+      "$ref": "#/definitions/foo"
+    },
+    "bar": {
+      "$ref": "#/definitions/bar"
+    }
+  }
+}
