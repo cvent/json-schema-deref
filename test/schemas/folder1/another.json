@@ -1,0 +1,12 @@
+{
+  "definitions": {
+    "anotherProp": {
+      "type": "string"
+    }
+  },
+  "properties": {
+    "anotherProp": {
+      "$ref": "#/definitions/anotherProp"
+    }
+  }
+}

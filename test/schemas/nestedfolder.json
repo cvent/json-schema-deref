@@ -1,0 +1,19 @@
+{
+  "title": "nested folder test",
+  "definitions": {
+    "f1": {
+      "$ref": "folder1/withinf1.json"
+    },
+    "someNestedProp" : {
+      "$ref": "folder1/more/more.json#/definitions/plusOne"
+    }
+  },
+  "properties": {
+    "f1": {
+      "$ref": "#/definitions/f1"
+    },
+    "someNestedProp": {
+      "$ref": "#/definitions/someNestedProp"
+    }
+  }
+}

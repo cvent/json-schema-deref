@@ -1,0 +1,15 @@
+{
+  "description": "Just a basic schema within folder1.",
+  "title": "Folder1 Object",
+  "type": "object",
+  "properties": {
+    "something": {
+      "description": "some property",
+      "readOnly": true,
+      "type": "number"
+    },
+    "someMore": {
+      "$ref": "more/more.json#/definitions/someMore"
+    }
+  }
+}

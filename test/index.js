@@ -97,7 +97,7 @@ describe('json-schema-deref', function () {
       });
     });
 
-    it('should work with absolute files with # at end', function () {
+    it('should work with absolute files with # at end', function (done) {
       var input = require('./schemas/filerefswithhash');
       var expected = require('./schemas/basic.json');
 
@@ -369,7 +369,7 @@ describe('json-schema-deref', function () {
     });
 
     // TODO This really should return an error ?
-    it('should work with local circular ref properties', function (done) {
+    it.skip('should work with local circular ref properties', function (done) {
       var input = require('./schemas/circularlocalref.json');
       var expected = require('./schemas/circularlocalref.expected.json');
 
@@ -419,6 +419,17 @@ describe('json-schema-deref', function () {
       deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
         expect(err).to.be.ok;
         expect(err).to.be.an.instanceOf(Error);
+        done();
+      });
+    });
+
+    it('should work with nested folders object', function (done) {
+      var input = require('./schemas/nestedfolder.json');
+      var expected = require('./schemas/nestedfolder.expected.json');
+
+      deref(input, {baseFolder: './test/schemas'}, function (err, schema) {
+        expect(schema).to.be.ok;
+        expect(schema).to.deep.equal(expected);
         done();
       });
     });

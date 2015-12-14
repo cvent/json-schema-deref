@@ -1,0 +1,15 @@
+{
+  "definitions": {
+    "someMore": {
+      "type": "number"
+    },
+    "plusOne": {
+      "$ref": "../another.json#/definitions/anotherProp"
+    }
+  },
+  "properties": {
+    "anotherProp": {
+      "$ref": "#/definitions/anotherProp"
+    }
+  }
+}
