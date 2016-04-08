@@ -6,10 +6,10 @@ declare interface Options {
 }
 type CB = (err : any, fullSchema : Object) => void;
 declare function callbackFn (err : any, fullSchema : Object) : any;
-declare function defer (schema : any, options?: Options | CB, callbackFn? : CB) : any;
+declare function deref (schema : any, options?: Options | CB, callbackFn? : CB) : any;
 
 declare namespace jsonSchemaDeref {
   export function getRefPathValue (): any;
 }
 
-export = defer;
+export = deref;
