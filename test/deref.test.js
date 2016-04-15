@@ -334,3 +334,10 @@ test.cb('should work with nested folders object', t => {
 
   deref(input, { baseFolder: './schemas' }, check(t, expected));
 });
+
+test.cb('should work with nested schema issue 12', t => {
+  const input = require('./schemas/issue12.json');
+  const expected = require('./schemas/issue12.expected.json');
+
+  deref(input, { baseFolder: './schemas' }, check(t, expected));
+});
