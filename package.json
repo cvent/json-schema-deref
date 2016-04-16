@@ -10,7 +10,7 @@
     "schema",
     "deref"
   ],
-  "version": "0.2.5",
+  "version": "0.3.0",
   "homepage": "https://github.com/bojand/json-schema-deref",
   "license": "MIT",
   "repository": {
