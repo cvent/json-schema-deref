@@ -4,6 +4,6 @@
 node_modules
 dump.rdb
 npm-debug.log
-temp
-.tmp/
-tmp
+.nyc_output
+dist/
+test.js

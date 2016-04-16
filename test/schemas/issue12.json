@@ -1,0 +1,41 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.0",
+    "title": "Broken Deferencer"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "properties": {
+                "sheep": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/sheep"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "sheep": {
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "lastSheering": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
