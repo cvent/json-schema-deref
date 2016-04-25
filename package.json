@@ -24,7 +24,7 @@
     "node": ">= 0.10.0"
   },
   "main": "dist/index.js",
-  "typings": "./lib/index.d.ts",
+  "typings": "index.d.ts",
   "dependencies": {
     "async": "~2.0.0-rc.2",
     "clone": "~1.0.2",
