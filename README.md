@@ -83,7 +83,7 @@ var myschema = require('schema.json');
 
 deref(myschema, function(err, fullSchema) {
   console.dir(fullSchema); // has the full expanded $refs
-};
+});
 ```
 
 ## API Reference
