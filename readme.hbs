@@ -26,14 +26,15 @@ Let's say you have the following JSON Schema:
     }
   },
   "properties": {
-  "id": {
-    "$ref": "#/definitions/id"
-  },
-  "foo": {
-    "$ref": "http://www.mysite.com/myschema.json#/definitions/foo"
-  },
-  "bar": {
-    "$ref": "bar.json"
+    "id": {
+      "$ref": "#/definitions/id"
+    },
+    "foo": {
+      "$ref": "http://www.mysite.com/myschema.json#/definitions/foo"
+    },
+    "bar": {
+      "$ref": "bar.json"
+    }
   }
 }
 ```
