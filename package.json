@@ -51,7 +51,7 @@
   "scripts": {
     "test": "npm run dist && ava -v -s",
     "cover": "npm run dist && nyc ava",
-    "docs": "jsdoc2md \"lib/**/*.js\" --template readme.hbs > README.md",
+    "docs": "jsdoc2md \"lib/**/*.js\" --heading-depth 3 --template readme.hbs > README.md",
     "dist": "node ./node_modules/babel-cli/bin/babel.js lib --out-dir dist",
     "prepublish": "npm run dist"
   },

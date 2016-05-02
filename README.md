@@ -90,7 +90,7 @@ deref(myschema, function(err, fullSchema) {
 
 <a name="deref"></a>
 
-## deref(schema, options, fn)
+### deref(schema, options, fn)
 Derefs <code>$ref</code>'s in JSON Schema to actual resolved values. Supports local, file and web refs.
 
 **Kind**: global function  
