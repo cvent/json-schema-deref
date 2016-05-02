@@ -1,0 +1,9 @@
+*.orig
+.idea
+.DS_Store
+node_modules
+dump.rdb
+npm-debug.log
+.nyc_output
+dist/
+test.js
