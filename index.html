@@ -1,10 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <script src="documentup.min.js"></script>
-    <script>
-      DocumentUp.document("bojand/json-schema-deref");
-    </script>
+    <meta charset="UTF-8">
+    <title>Json-schema-deref by bojand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-  <body></body>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Json-schema-deref</h1>
+      <h2 class="project-tagline">json schema dereference utility</h2>
+      <a href="https://github.com/bojand/json-schema-deref" class="btn">View on GitHub</a>
+      <a href="https://github.com/bojand/json-schema-deref/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bojand/json-schema-deref/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="json-schema-deref" class="anchor" href="#json-schema-deref" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>json-schema-deref</h1>
+
+<p>Dereference JSON pointers in a JSON schemas with their true resolved values.
+A lighter synchronous version of this module is available as <a href="https://github.com/bojand/json-schema-deref-sync">json-schema-deref-sync</a>,
+but omits web references and custom loaders.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><code>npm install json-schema-deref</code></p>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>Let's say you have the following JSON Schema:</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Just some JSON schema.<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Basic Widget<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>definitions<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>unique identifier<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>minLength<span class="pl-pds">"</span></span>: <span class="pl-c1">1</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>readOnly<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>
+    }
+  },
+  <span class="pl-s"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>$ref<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>#/definitions/id<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>$ref<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>http://www.mysite.com/myschema.json#/definitions/foo<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>$ref<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>bar.json<span class="pl-pds">"</span></span>
+    }
+  }
+}</pre></div>
+
+<p>Sometimes you just want that schema to be fully expanded, with <code>$ref</code>'s being their (true) resolved values:</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Just some JSON schema.<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Basic Widget<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>object<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>definitions<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>unique identifier<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>minLength<span class="pl-pds">"</span></span>: <span class="pl-c1">1</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>readOnly<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>
+    }
+  },
+  <span class="pl-s"><span class="pl-pds">"</span>properties<span class="pl-pds">"</span></span>: {
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>unique identifier<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>minLength<span class="pl-pds">"</span></span>: <span class="pl-c1">1</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>readOnly<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>foo property<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>readOnly<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>: {
+      <span class="pl-s"><span class="pl-pds">"</span>description<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>bar property<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>boolean<span class="pl-pds">"</span></span>
+    }
+  }
+}</pre></div>
+
+<p>This utility lets you do that:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> deref <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>json-schema-deref<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> myschema <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>schema.json<span class="pl-pds">'</span></span>);
+
+<span class="pl-en">deref</span>(myschema, <span class="pl-k">function</span>(<span class="pl-smi">err</span>, <span class="pl-smi">fullSchema</span>) {
+  <span class="pl-en">console</span>.<span class="pl-c1">dir</span>(fullSchema); <span class="pl-c">// has the full expanded $refs</span>
+});</pre></div>
+
+<h2>
+<a id="api-reference" class="anchor" href="#api-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Reference</h2>
+
+<h3>
+<a id="derefschema-options-fn" class="anchor" href="#derefschema-options-fn" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>deref(schema, options, fn)</h3>
+
+<p>Derefs <code>$ref</code>'s in JSON Schema to actual resolved values. Supports local, file and web refs.</p>
+
+<p><strong>Kind</strong>: global function  </p>
+
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schema</td>
+<td><code>Object</code></td>
+<td>The JSON schema</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>Object</code></td>
+<td>options</td>
+</tr>
+<tr>
+<td>options.baseFolder</td>
+<td><code>String</code></td>
+<td>the base folder to get relative path files from. Default is <code>process.cwd()</code>
+</td>
+</tr>
+<tr>
+<td>options.cache</td>
+<td><code>String</code></td>
+<td>whether to cache the result from the request. Default: <code>true</code>.</td>
+</tr>
+<tr>
+<td>options.cacheTTL</td>
+<td><code>Number</code></td>
+<td>the time to keep request result in cache. Default is <code>5 minutes</code>.</td>
+</tr>
+<tr>
+<td>options.failOnMissing</td>
+<td><code>Boolean</code></td>
+<td>By default missing / unresolved refs will be left as is with their ref value intact.                                        If set to <code>true</code> we will error out on first missing ref that we cannot                                        resolve. Default: <code>false</code>.</td>
+</tr>
+<tr>
+<td>options.loader</td>
+<td><code>function</code></td>
+<td>a function for custom loader. Invoked if we could not resolve the ref type,                                  or if there was an error resolving a web or file ref types.                                  function with signature: <code>function(refValue, options, fn)</code>                                  <code>refValue</code> - the string value of the ref being resolved. Ex: <code>db://my_database_id</code>                                  <code>options</code> - options parameter passed to <code>deref</code>                                  <code>fn</code> - the final callback function, in form <code>function(err, newValue)</code>                                  <code>err</code> - error if ref is valid for the loader but there was an error resolving the ref.                                  If used in combination with <code>failOnMissing</code> option it will abort the whole deref process.                                  <code>newValue</code> - the resolved ref value, or <code>null</code> or <code>undefined</code> if the ref isn't for this custom                                  <code>loader</code> and we should just leave the <code>$ref</code> as is.</td>
+</tr>
+<tr>
+<td>fn</td>
+<td><code>function</code></td>
+<td>The final callback in form <code>(error, newSchema)</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="custom-loader" class="anchor" href="#custom-loader" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Loader</h2>
+
+<p>Let's say we want to get $ref's from a MongoDB database, and our <code>$ref</code> objects in the JSON Schema might be something like:</p>
+
+<div class="highlight highlight-source-json"><pre><span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: {
+  <span class="pl-s"><span class="pl-pds">"</span>$ref<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>mongodb:507c35dd8fada716c89d0013<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<p>Our custom loader function passed in the <code>options</code> <code>loader</code> parameter would look something like:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">myMongoDBLoader</span>(<span class="pl-smi">ref</span>, <span class="pl-smi">option</span>, <span class="pl-smi">fn</span>) {
+  <span class="pl-k">if</span>(<span class="pl-smi">ref</span>.<span class="pl-c1">indexOf</span>(<span class="pl-s"><span class="pl-pds">'</span>mongodb:<span class="pl-pds">'</span></span>) <span class="pl-k">===</span> <span class="pl-c1">0</span>) {
+    <span class="pl-k">var</span> id <span class="pl-k">=</span> <span class="pl-smi">ref</span>.<span class="pl-c1">substring</span>(<span class="pl-c1">8</span>);
+    <span class="pl-k">return</span> <span class="pl-smi">collection</span>.<span class="pl-en">findOne</span>({_id<span class="pl-k">:</span>id}, fn);
+  }
+
+  <span class="pl-c">// not ours, pass back nothing to keep it the same</span>
+  <span class="pl-c">// or pass error and use failOnMissing to abort</span>
+  <span class="pl-k">return</span> <span class="pl-en">fn</span>();
+}</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bojand/json-schema-deref">Json-schema-deref</a> is maintained by <a href="https://github.com/bojand">bojand</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
 </html>
