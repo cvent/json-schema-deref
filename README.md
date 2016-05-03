@@ -88,9 +88,8 @@ deref(myschema, function(err, fullSchema) {
 
 ## API Reference
 
-<a name="deref"></a>
-
 ### deref(schema, options, fn)
+
 Derefs <code>$ref</code>'s in JSON Schema to actual resolved values. Supports local, file and web refs.
 
 **Kind**: global function  
