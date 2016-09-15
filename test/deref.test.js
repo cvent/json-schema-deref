@@ -359,3 +359,10 @@ test.cb('should work with nested schema issue 122', t => {
 
   deref(input, { baseFolder: './schemas', loader: loader }, check(t, expected));
 });
+
+test.cb('should work with null values in default attribute', t => {
+  const input = require('./schemas/null.json');
+  const expected = require('./schemas/null.expected.json');
+
+  deref(input, { baseFolder: './schemas' }, check(t, expected));
+});

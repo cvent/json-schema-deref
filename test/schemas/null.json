@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "address-1.0.0",
+  "type": "object",
+  "definitions": {
+    "line_1": {
+      "anyOf": [{
+        "type": "string"
+      }, {
+        "type": "null"
+      }],
+      "description": "address line 1",
+      "x-example": "11 test Street",
+      "default": null
+    }
+  },
+  "properties": {
+    "line_1": {
+      "$ref": "#/definitions/line_1"
+    }
+  }
+}
