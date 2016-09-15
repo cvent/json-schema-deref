@@ -341,3 +341,21 @@ test.cb('should work with nested schema issue 12', t => {
 
   deref(input, { baseFolder: './schemas' }, check(t, expected));
 });
+
+test.cb('should work with nested schema issue 122', t => {
+  const input = require('./schemas/basicrefnonjson.json');
+  const expected = require('./schemas/basicrefnonjson.expected.json');
+
+  const loader = function (refValue, options, cb) {
+    if (refValue.indexOf('.txt') !== -1) {
+      fsx.readFile(path.resolve(options.baseFolder, refValue), function (err, data) {
+        console.dir(arguments)
+        if (err) return cb(err);
+        console.log(data.toString());
+        return cb(null, data.toString());
+      });
+    };
+  }
+
+  deref(input, { baseFolder: './schemas', loader: loader }, check(t, expected));
+});
