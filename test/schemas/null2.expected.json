@@ -1,0 +1,11 @@
+{
+  "description": "Just a basic schema.",
+  "title": "Basic Object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

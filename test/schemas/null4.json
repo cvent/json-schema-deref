@@ -1,0 +1,14 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "x-name": "my-api",
+    "title": "my api",
+    "version": "1.0"
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "add": false
+    }
+  }
+}

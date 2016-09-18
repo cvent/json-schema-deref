@@ -366,3 +366,79 @@ test.cb('should work with null values in default attribute', t => {
 
   deref(input, { baseFolder: './schemas' }, check(t, expected));
 });
+
+test.cb('should work with null in loader #22', t => {
+  const input = require('./schemas/null2.json');
+  const expected = require('./schemas/null2.expected.json');
+
+  const options = {
+    failOnMissing: true,
+    baseFolder: './schemas',
+    loader: (ref, options, fn) => {
+      if (ref.indexOf('db:') === 0) {
+        const value = {
+          type: "string"
+        };
+        return fn(null, value);
+      }
+
+      return fn();
+    }
+  };
+
+  deref(input, options, check(t, expected));
+});
+
+test.cb('should work with null value in schema #22', t => {
+  const input = require('./schemas/null3.json');
+  const expected = require('./schemas/null3.expected.json');
+
+  const options = {
+    failOnMissing: true,
+    baseFolder: './schemas',
+    loader: (ref, options, fn) => {
+      if (ref === './somevalue.txt') {
+        return fn(null, { type: 'number' });
+      }
+      return fn();
+    }
+  };
+
+  deref(input, options, check(t, expected));
+});
+
+test.cb('should work with false value in schema #22', t => {
+  const input = require('./schemas/null4.json');
+  const expected = require('./schemas/null4.expected.json');
+
+  const options = {
+    failOnMissing: true,
+    baseFolder: './schemas',
+    loader: (ref, options, fn) => {
+      if (ref === './somevalue.txt') {
+        return fn(null, { type: 'number' });
+      }
+      return fn();
+    }
+  };
+
+  deref(input, options, check(t, expected));
+});
+
+test.cb('should pass undefined ref in laoder issue 23', t => {
+  const input = require('./schemas/undefinedref.json');
+  const expected = require('./schemas/undefinedref.expected.json');
+
+  const options = {
+    failOnMissing: true,
+    baseFolder: './schemas',
+    loader: (ref, options, fn) => {
+      if (ref === './somevalue.txt') {
+        return fn(null, { type: 'number' });
+      }
+      return fn();
+    }
+  };
+
+  deref(input, options, check(t, expected));
+});
