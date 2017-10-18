@@ -34,7 +34,7 @@
     "md5": "~2.2.0",
     "memory-cache": "~0.1.5",
     "mpath": "~0.2.1",
-    "request": "~2.70.0",
+    "request": "~2.83.0",
     "traverse": "~0.6.6",
     "traverse-async": "~0.1.6",
     "valid-url": "~1.0.9"
