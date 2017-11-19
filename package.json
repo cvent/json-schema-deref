@@ -57,29 +57,13 @@
       "test/*.test.js"
     ]
   },
-  "xo": {
-    "envs": [
-      "node",
-      "es6"
-    ],
-    "esnext": true,
-    "space": true,
-    "rules": {
-      "babel/arrow-parens": 1,
-      "babel/object-curly-spacing": 0,
-      "babel/object-shorthand": 1,
-      "brace-style": 1,
-      "no-else-return": 1,
-      "no-unused-vars": 1
-    }
-  },
   "directories": {
     "test": "test"
   },
   "config": {
     "nyc": {
       "include": [
-        "dist/*.js"
+        "lib/*.js"
       ]
     }
   }
