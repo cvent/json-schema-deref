@@ -1,5 +1,10 @@
 # json-schema-deref
 
+[![npm version](https://img.shields.io/npm/v/json-schema-deref.svg?style=flat-square)](https://www.npmjs.com/package/json-schema-deref)
+[![build status](https://img.shields.io/travis/json-schema-derefjs/json-schema-deref/master.svg?style=flat-square)](https://travis-ci.org/json-schema-derefjs/json-schema-deref)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com)
+[![License](https://img.shields.io/github/license/bojand/json-schema-deref.svg?style=flat-square)](https://raw.githubusercontent.com/bojand/json-schema-deref/master/LICENSE)
+
 Dereference JSON pointers in a JSON schemas with their true resolved values.
 A lighter synchronous version of this module is available as [json-schema-deref-sync](https://github.com/bojand/json-schema-deref-sync),
 but omits web references and custom loaders.
@@ -88,8 +93,9 @@ deref(myschema, function(err, fullSchema) {
 
 ## API Reference
 
-### deref(schema, options, fn)
+<a name="deref"></a>
 
+### deref(schema, options, fn)
 Derefs <code>$ref</code>'s in JSON Schema to actual resolved values. Supports local, file and web refs.
 
 **Kind**: global function  
