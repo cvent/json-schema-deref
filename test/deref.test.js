@@ -18,11 +18,15 @@ function check (t, expected) {
 test.cb.before(t => {
   fsx.rmrfSync(tempFolder)
   fsx.mkdirpSync(tempFolder)
-  asl.eachSeries(srcfiles, (filePath, cb) => {
-    const srcFile = path.resolve(path.join(__dirname, './schemas', filePath))
-    const desFile = path.join('/var/tmp/json-deref-schema-tests/', filePath)
-    fsx.copy(srcFile, desFile, cb)
-  }, t.end)
+  asl.eachSeries(
+    srcfiles,
+    (filePath, cb) => {
+      const srcFile = path.resolve(path.join(__dirname, './schemas', filePath))
+      const desFile = path.join('/var/tmp/json-deref-schema-tests/', filePath)
+      fsx.copy(srcFile, desFile, cb)
+    },
+    t.end
+  )
 })
 
 test.cb('should work with basic schema', t => {
@@ -354,7 +358,7 @@ test.cb('should work with nested schema issue 122', t => {
         console.log(data.toString())
         return cb(null, data.toString())
       })
-    };
+    }
   }
 
   deref(input, { baseFolder: './test/schemas', loader: loader }, check(t, expected))
@@ -441,4 +445,11 @@ test.cb('should pass undefined ref in laoder issue 23', t => {
   }
 
   deref(input, options, check(t, expected))
+})
+
+test.cb('should work with paths of the same name as ref', t => {
+  const input = require('./schemas/notcircularlocalref.json')
+  const expected = require('./schemas/notcircularlocalref.expected.json')
+
+  deref(input, check(t, expected))
 })
