@@ -33,7 +33,7 @@
     "lodash": "^4.17.11",
     "md5": "~2.2.0",
     "memory-cache": "~0.2.0",
-    "mpath": "~0.5.0",
+    "mpath": "~0.8.4",
     "request": "^2.88.0",
     "traverse": "~0.6.6",
     "traverse-async": "~0.1.6",
