@@ -21,7 +21,7 @@
     "url": "http://github.com/bojand/json-schema-deref/issues"
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 6.17.1"
   },
   "main": "lib/index.js",
   "typings": "index.d.ts",
