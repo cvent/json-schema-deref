@@ -45,7 +45,7 @@
     "jsdoc-to-markdown": "^4.0.0",
     "nyc": "^13.0.0",
     "standard": "^12.0.0",
-    "validator": "^10.8.0"
+    "validator": "^13.0.0"
   },
   "scripts": {
     "test": "ava -v -s",
